@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/login.css';
+import { withRouter } from 'react-router-dom';
 
 function Login() {
 
@@ -44,4 +45,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default withRouter (Login);

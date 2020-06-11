@@ -1,4 +1,6 @@
 import React from 'react'
+import '../app/ServiceClient'
+import { withRouter } from 'react-router-dom';
 
 const estadoInicial = {
     nome: '',
@@ -8,20 +10,20 @@ const estadoInicial = {
     fornecedor: ''
 }
 
-export default class CadastroProduto extends React.Component {
+class CadastroProduto extends React.Component {
 
     state = estadoInicial;
 
     OnChange = (event) => {
+        
         const valor = event.target.value
-        const nomeDoCampo = event.target.nome
+        const nomeDoCampo = event.target.name
         this.setState({ [nomeDoCampo]: valor })
     }
 
     limpaCampos = () => {
-        alert('funciona!')
-        console.log(this.state)
         this.setState(estadoInicial)
+        console.log(this.state)
     }
 
     render() {
@@ -80,3 +82,5 @@ export default class CadastroProduto extends React.Component {
         )
     }
 }
+
+export default withRouter (CadastroProduto);
