@@ -1,6 +1,6 @@
 import React from 'react'
 import '../app/ServiceClient'
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 
 const estadoInicial = {
     nome: '',
@@ -26,11 +26,36 @@ class CadastroProduto extends React.Component {
         console.log(this.state)
     }
 
+    validaAcesso = () => {
+        //let location = useLocation();
+        
+
+        let recuperarDB = localStorage.getItem('_LOGIN-DB')
+
+        let a = JSON.parse(recuperarDB)
+
+        console.log(a)
+        console.log(a.nome, a.senha)
+        //const nomeIdentificator = recuperarDB[]
+        //console.log(nomeIdentificator)
+
+        let localAtual = '#/'+ a.nome.strip() +'/Cadastro'
+        //let enderecoDestino = location.pathname;
+
+        console.log(localAtual)
+        //console.log(enderecoDestino)
+        
+
+        //if (localAtual === enderecoDestino){
+          //  console.log('funciona')
+        //}
+    }
+
     render() {
         return (
 
             <div className="card">
-                <form id="frmProduto" onSubmit='' >
+                <form id="frmProduto">
                     <div className="card-header">
                         Cadastre seu produto
                 </div>
@@ -73,7 +98,7 @@ class CadastroProduto extends React.Component {
                         </div>
                         <div className="row">
                             <div className="col-md-1">
-                                <button className="btn btn-success">Adicionar</button>
+                                <button className="btn btn-success" onClick={this.validaAcesso}>Adicionar</button>
                             </div>
                             <div className="col-md-1">
                                 <button className="btn btn-warning" onClick={this.limpaCampos}>Limpar</button>

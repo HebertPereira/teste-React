@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 function Login() {
 
     const LOGIN = '_LOGIN-DB'
-    let nome = '';
-    let senha = '';
+    let nomeUser = '';
+    let senhaUser = '';
 
     return (
         <>
@@ -17,7 +17,7 @@ function Login() {
                         <div className="form-group">
                             <label>Nome/E-mail:</label>
                             <input type="text" name="nome/email" className="form-control" placeholder="Digite o nome ou e-mail ..." onChange={(event) => {
-                                nome = event.target.value
+                                nomeUser = event.target.value
                             }} />
                         </div>
                     </div>
@@ -25,14 +25,15 @@ function Login() {
                         <div className="form-group">
                             <label>Senha:</label>
                             <input type="password" name="senha" className="form-control" placeholder="Digite a sua senha..." onChange={(event) => {
-                                senha = event.target.value
+                                senhaUser = event.target.value
                             }} />
                         </div>
                     </div>
                     <button className="btn btn-primary" onClick={() => {
-                        console.log(nome)
-                        if (nome !== '' || senha !== '') {
-                            const login = [nome, senha]
+                        console.log(nomeUser)
+                        if (nomeUser !== '' || senhaUser !== '') {
+                            nomeUser = nomeUser.strip()
+                            const login = {nome: nomeUser, senha: senhaUser}
                             localStorage.setItem(LOGIN, JSON.stringify(login))
                             alert('Login efetuado com sucesso')
                         } else {
