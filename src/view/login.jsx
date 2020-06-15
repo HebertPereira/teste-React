@@ -42,15 +42,21 @@ class Login extends React.Component {
                         </div>
                         <button className="btn btn-primary" onClick={() => {
                             console.log(this.state.nomeUser)
-                            if (this.state.nomeUser !== '' || this.state.senhaUser !== '') {
-                                //this.setState({nomeUser : this.state.nomeUser.strip()})
-                                const login = { nome: this.state.nomeUser, senha: this.state.senhaUser }
-                                localStorage.setItem(LOGIN, JSON.stringify(login))
-                                alert('Login efetuado com sucesso')
-                                window.location.href = '#/' + this.state.nomeUser.replace(' ', '') +'/Cadastro'
-                            } else {
-                                alert('Dados invalidos! Verifique os campos e tente novamente.')
+                            try{
+                                const pegaBD = localStorage.getItem()
                             }
+                            catch{
+                                if (this.state.nomeUser !== '' || this.state.senhaUser !== '') {
+                                    //this.setState({nomeUser : this.state.nomeUser.strip()})
+                                    const login = { nome: this.state.nomeUser, senha: this.state.senhaUser }
+                                    localStorage.setItem(LOGIN, JSON.stringify(login))
+                                    alert('Login efetuado com sucesso')
+                                    window.location.href = '#/' + this.state.nomeUser.replace(' ', '') +'/Cadastro'
+                                } else {
+                                    alert('Dados invalidos! Verifique os campos e tente novamente.')
+                                }
+                            }
+                            
                         }}>Vamos la!</button>
                     </div>
                 </div>
