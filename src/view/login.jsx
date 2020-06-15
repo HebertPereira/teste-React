@@ -6,7 +6,8 @@ import { render } from '@testing-library/react';
 const LOGIN = '_LOGIN-DB'
 const valorPadrao = {
     nomeUser: '',
-    senhaUser: ''
+    senhaUser: '',
+    existe: false
 }
 
 
@@ -14,6 +15,7 @@ const valorPadrao = {
 class Login extends React.Component {
 
     state = valorPadrao;
+
     render() {
         return (
             <>
@@ -43,20 +45,28 @@ class Login extends React.Component {
                         <button className="btn btn-primary" onClick={() => {
                             console.log(this.state.nomeUser)
                             try{
-                                const pegaBD = localStorage.getItem()
+                                const pegaBD = localStorage.getItem('_LOGIN-DB')
+                                const valorDB = JSON.parse(pegaBD)
+                                console.log(valorDB)
+                                for (var i of valorDB){
+                                    console.log(valorDB.nomeUser);
+                                    i++;
+                                }
                             }
                             catch{
                                 if (this.state.nomeUser !== '' || this.state.senhaUser !== '') {
-                                    //this.setState({nomeUser : this.state.nomeUser.strip()})
-                                    const login = { nome: this.state.nomeUser, senha: this.state.senhaUser }
+                                    this.setState({nomeUser : this.state.nomeUser.strip()})
+
+                                    const login = {Usuario1: {nome : this.state.nomeUser, senha : this.state.senhaUser}}
+
                                     localStorage.setItem(LOGIN, JSON.stringify(login))
                                     alert('Login efetuado com sucesso')
+
                                     window.location.href = '#/' + this.state.nomeUser.replace(' ', '') +'/Cadastro'
                                 } else {
                                     alert('Dados invalidos! Verifique os campos e tente novamente.')
                                 }
                             }
-                            
                         }}>Vamos la!</button>
                     </div>
                 </div>
